@@ -4,7 +4,7 @@ library(mlBioNets)
 ##-----------------
 # Se cargan los datos procesados
 load(file = "03_out/data/asv_table.RData") # asv_table
-load(file = "03_out/data/asv_tabla_collapsed.RData") # asv_table_cllps
+load(file = "03_out/data/asv_table_aggregate.RData") # asv_table_cllps
 ##-----------------
 # asv abundance table
 asv_table <- as.data.frame(read_tsv("01_raw_data/counts.tsv"))
@@ -25,15 +25,15 @@ asv_pert <- as.data.frame(read_tsv("01_raw_data/perturbations.tsv"))
 # taxonomic table
 asv_taxa<-as.data.frame(read_tsv("01_raw_data/rdp_species.tsv"))
 ##-----------------
-# Condensed table at genus level
-asv_table_cllps <- T_collapse(is_phyloseq = F,
-                              T_table = asv_taxa,
-                              O_table = asv_table,
-                              names_level = "Genus")
+# aggregate table at genus level
+asv_table_aggregate <- T_collapse(is_phyloseq = F,
+                                  T_table = asv_taxa,
+                                  O_table = asv_table,
+                                  names_level = "Genus")
 # Junta todas las abundancias de los taxa y los guarda en un objeto, 
 # con todas las series de tiempo
 # Se guarda el objeto como .RData
-# save(asv_table_cllps, file = "03_out/data/asv_tabla_collapsed.RData")
+# save(asv_table_aggregate, file = "03_out/data/asv_table_aggregate.RData")
 ##-----------------
 # se separa la tabla por cada subject, que es cada raton
 # el raton 1 no tenpia perturbaciones, se toman unicamente los ratones 
