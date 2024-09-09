@@ -1,0 +1,12 @@
+---
+title: "Citas"
+author: "Luis Andrés Rojas García"
+date: "2024-09-09"
+output: html_document
+bibliography: citas.bib
+csl: apa.csl
+---
+
+EWSmethods [@ewsmethodsR]
+
+
