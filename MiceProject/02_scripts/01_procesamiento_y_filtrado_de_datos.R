@@ -53,6 +53,9 @@ subject5 <- subject5[order(subject5$time), ]
 ##
 ##
 # De cada raton, se separan las abundancias por tratamiento
+## Basal
 a <- subject2$time[1]
-b<-asv_pert[which(asv_pert$subject == 2),]$start[1]
-b<-subject2$time[which(subject2$time==b)-1]
+b <- asv_pert[which(asv_pert$subject == 2),]$start[1]
+b <- subject2$time[which(subject2$time==b)-1]
+basal_subject2 <- subject2[which(subject2$time == a):which(subject2$time == b),]$sampleID
+basal_subject2 <- asv_table_aggregate[basal_subject2,]
