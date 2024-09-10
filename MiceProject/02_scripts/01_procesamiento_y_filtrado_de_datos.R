@@ -6,36 +6,33 @@ library(mlBioNets)
 load(file = "03_out/data/asv_table.RData") # asv_table
 load(file = "03_out/data/asv_table_aggregate.RData") # asv_table_cllps
 ##-----------------
+# Se cargan los datos en el entorno de R
 # asv abundance table
 asv_table <- as.data.frame(read_tsv("01_raw_data/counts.tsv"))
 asv_ids <- as.vector(asv_table[,1])
 asv_table <- asv_table[,-1]
 rownames(asv_table) <- asv_ids
-# Se puso el nombre de los asv en los renglones de la tabla, ya que venían 
-# agregados como una columna extra
-# Se guarda como archivo .RData
+#   Se puso el nombre de los asv en los renglones de la tabla, ya que venían 
+#   agregados como una columna extra
+#   Se guarda como archivo .RData
 # save(asv_table, file = "03_out/data/asv_table.RData")
-
 # asv metadata table
 asv_meta <- as.data.frame(read_tsv("01_raw_data/metadata.tsv"))
-
 # perturbations table
 asv_pert <- as.data.frame(read_tsv("01_raw_data/perturbations.tsv"))
-
 # taxonomic table
 asv_taxa<-as.data.frame(read_tsv("01_raw_data/rdp_species.tsv"))
-##-----------------
 # aggregate table at genus level
 asv_table_aggregate <- T_collapse(is_phyloseq = F,
                                   T_table = asv_taxa,
                                   O_table = asv_table,
                                   names_level = "Genus")
-# Junta todas las abundancias de los taxa y los guarda en un objeto, 
-# con todas las series de tiempo
-# Se guarda el objeto como .RData
+#   Junta todas las abundancias de los taxa y los guarda en un objeto, 
+#   con todas las series de tiempo
+#   Se guarda el objeto como .RData
 # save(asv_table_aggregate, file = "03_out/data/asv_table_aggregate.RData")
 ##-----------------
-# se separa la tabla por cada subject, que es cada raton
+# Se separa la tabla por cada subject, que es cada raton
 # el raton 1 no tenpia perturbaciones, se toman unicamente los ratones 
 # 2, 3, 4 y 5
 ## RATON 2
@@ -50,12 +47,12 @@ subject4 <- subject4[order(subject4$time), ]
 ## RATON 5
 subject5 <- asv_meta[which(asv_meta$subject == 5),]
 subject5 <- subject5[order(subject5$time), ]
-##
-##
+##-----------------
 # De cada raton, se separan las abundancias por tratamiento
+## RATON 2 ##------
 ## Basal
-a <- subject2$time[1]
-b <- asv_pert[which(asv_pert$subject == 2),]$start[1]
-b <- subject2$time[which(subject2$time==b)-1]
-basal_subject2 <- subject2[which(subject2$time == a):which(subject2$time == b),]$sampleID
-basal_subject2 <- asv_table_aggregate[basal_subject2,]
+basal_start_t       <- subject2$time[1]
+fatdiet_start_t     <- asv_pert[which(asv_pert$subject == 2),]$start[1]
+basal_end_t         <- subject2$time[which(subject2$time == fatdiet_start_t) -1 ]
+basal_subject2_IDs  <- subject2[which(subject2$time == basal_start_t) : which(subject2$time == basal_end_t),]$sampleID
+basal_subject2      <- asv_table_aggregate[basal_subject2_IDs,]
