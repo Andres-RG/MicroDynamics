@@ -69,3 +69,12 @@ fatdiet_subject2_aggregate <- asv_table_aggregate[fatdiet_subject2_IDs,]
 #   Se obtienen los datos agregados del periodo fatdiet del raton 2
 #   Se guarda el objeto procesado como .RData
 # save(fatdiet_subject2_aggregate, file = "03_out/data/fatdiet_period_mouse_2.RData")
+## Recovered 1
+recover1_start_t            <- subject2$time[which(subject2$time == fatdiet_end_t)+1]
+vancomycin_start_t          <- asv_pert[which(asv_pert$subject == 2),]$start[2]
+recover1_end_t              <- subject2$time[which(subject2$time == vancomycin_start_t)-1]
+recover1_subject2_IDs       <- subject2[which(subject2$time == recover1_start_t) : which(subject2$time ==recover1_end_t),]$sampleID
+recover1_subject2_aggregate <- asv_table_aggregate[recover1_subject2_IDs,]
+#   Se obtienen los datos agregados del periodo de recuperacion 1 del raton 2
+#   Se guarda el objeto procesado como .RData
+# save(recover1_subject2_aggregate, file = "03_out/data/recovered1_period_mouse_2.RData")
