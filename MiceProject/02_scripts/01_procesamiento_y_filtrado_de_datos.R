@@ -5,6 +5,8 @@ library(mlBioNets)
 # Se cargan los datos procesados
 load(file = "03_out/data/asv_table.RData") # asv_table
 load(file = "03_out/data/asv_table_aggregate.RData") # asv_table_cllps
+load(file = "03_out/data/basal_period_mouse_2.RData") # basal_subject2_aggregate
+laod(file = "03_out/data/fatdiet_period_mouse_2.RData") # fatdiet_subject2_aggregate
 ##-----------------
 # Se cargan los datos en el entorno de R
 # asv abundance table
@@ -51,11 +53,19 @@ subject5 <- subject5[order(subject5$time), ]
 # De cada raton, se separan las abundancias por tratamiento
 ## RATON 2 ##------
 ## Basal
-basal_start_t       <- subject2$time[1]
-fatdiet_start_t     <- asv_pert[which(asv_pert$subject == 2),]$start[1]
-basal_end_t         <- subject2$time[which(subject2$time == fatdiet_start_t) -1 ]
-basal_subject2_IDs  <- subject2[which(subject2$time == basal_start_t) : which(subject2$time == basal_end_t),]$sampleID
-basal_subject2      <- asv_table_aggregate[basal_subject2_IDs,]
+basal_start_t            <- subject2$time[1]
+fatdiet_start_t          <- asv_pert[which(asv_pert$subject == 2),]$start[1]
+basal_end_t              <- subject2$time[which(subject2$time == fatdiet_start_t) -1 ]
+basal_subject2_IDs       <- subject2[which(subject2$time == basal_start_t) : which(subject2$time == basal_end_t),]$sampleID
+basal_subject2_aggregate <- asv_table_aggregate[basal_subject2_IDs,]
 #   Se obtienen los datos agregados del periodo basal del raton 2
 #   Se guarda el objeto procesado como .RData
-# save(basal_subject2, file = "03_out/data/basal_period_mouse_2.RData")
+# save(basal_subject2_aggregate, file = "03_out/data/basal_period_mouse_2.RData")
+## Fat diet
+fatdiet_start_t
+fatdiet_end_t              <- asv_pert[which(asv_pert$subject == 2),]$end[1]
+fatdiet_subject2_IDs       <- subject2[which(subject2$time == fatdiet_start_t) : which(subject2$time == fatdiet_end_t),]$sampleID
+fatdiet_subject2_aggregate <- asv_table_aggregate[fatdiet_subject2_IDs,]
+#   Se obtienen los datos agregados del periodo fatdiet del raton 2
+#   Se guarda el objeto procesado como .RData
+# save(fatdiet_subject2_aggregate, file = "03_out/data/fatdiet_period_mouse_2.RData")
