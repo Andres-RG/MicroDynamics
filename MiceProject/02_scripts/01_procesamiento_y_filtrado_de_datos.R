@@ -1,14 +1,16 @@
 # Librerias necesarias
 library(readr)
 library(mlBioNets)
-##-----------------
+##---------------------------
 # Se cargan los datos procesados
 load(file = "03_out/data/asv_table.RData") # asv_table
 load(file = "03_out/data/asv_table_aggregate.RData") # asv_table_cllps
 load(file = "03_out/data/basal_period_mouse_2.RData") # basal_subject2_aggregate
-laod(file = "03_out/data/fatdiet_period_mouse_2.RData") # fatdiet_subject2_aggregate
+load(file = "03_out/data/fatdiet_period_mouse_2.RData") # fatdiet_subject2_aggregate
 load(file = "03_out/data/recovered1_period_mouse_2.RData") # recover1_subject2_aggregate
-##-----------------
+load(file = "03_out/data/vancomycin_period_mouse_2.RData") # vancomycin_subject2_aggregate
+load(file = "03_out/data/recovered2_period_mouse_2.RData") # recover2_subject2_aggregate
+##---------------------------
 # Se cargan los datos en el entorno de R
 # asv abundance table
 asv_table <- as.data.frame(read_tsv("01_raw_data/counts.tsv"))
@@ -34,7 +36,7 @@ asv_table_aggregate <- T_collapse(is_phyloseq = F,
 #   con todas las series de tiempo
 #   Se guarda el objeto como .RData
 # save(asv_table_aggregate, file = "03_out/data/asv_table_aggregate.RData")
-##-----------------
+##---------------------------
 # Se separa la tabla por cada subject, que es cada raton
 # el raton 1 no tenpia perturbaciones, se toman unicamente los ratones 
 # 2, 3, 4 y 5
@@ -50,10 +52,10 @@ subject4 <- subject4[order(subject4$time), ]
 ## RATON 5
 subject5 <- asv_meta[which(asv_meta$subject == 5),]
 subject5 <- subject5[order(subject5$time), ]
-##-----------------
+##---------------------------
 # De cada raton, se separan las abundancias por tratamiento
-## RATON 2 ##------
-## Basal
+## RATON 2 ##----------------
+## Basal - --- --- --- --- --
 basal_start_t            <- subject2$time[1]
 fatdiet_start_t          <- asv_pert[which(asv_pert$subject == 2),]$start[1]
 basal_end_t              <- subject2$time[which(subject2$time == fatdiet_start_t) -1 ]
@@ -62,7 +64,7 @@ basal_subject2_aggregate <- asv_table_aggregate[basal_subject2_IDs,]
 #   Se obtienen los datos agregados del periodo basal del raton 2
 #   Se guarda el objeto procesado como .RData
 # save(basal_subject2_aggregate, file = "03_out/data/basal_period_mouse_2.RData")
-## Fat diet
+## Fat diet --- --- --- --- -
 fatdiet_start_t
 fatdiet_end_t              <- asv_pert[which(asv_pert$subject == 2),]$end[1]
 fatdiet_subject2_IDs       <- subject2[which(subject2$time == fatdiet_start_t) : which(subject2$time == fatdiet_end_t),]$sampleID
@@ -70,7 +72,7 @@ fatdiet_subject2_aggregate <- asv_table_aggregate[fatdiet_subject2_IDs,]
 #   Se obtienen los datos agregados del periodo fatdiet del raton 2
 #   Se guarda el objeto procesado como .RData
 # save(fatdiet_subject2_aggregate, file = "03_out/data/fatdiet_period_mouse_2.RData")
-## Recovered 1
+## Recovered 1 -- --- --- ---
 recover1_start_t            <- subject2$time[which(subject2$time == fatdiet_end_t)+1]
 vancomycin_start_t          <- asv_pert[which(asv_pert$subject == 2),]$start[2]
 recover1_end_t              <- subject2$time[which(subject2$time == vancomycin_start_t)-1]
@@ -79,3 +81,20 @@ recover1_subject2_aggregate <- asv_table_aggregate[recover1_subject2_IDs,]
 #   Se obtienen los datos agregados del periodo de recuperacion 1 del raton 2
 #   Se guarda el objeto procesado como .RData
 # save(recover1_subject2_aggregate, file = "03_out/data/recovered1_period_mouse_2.RData")
+## Vancomycin --- --- --- ---
+vancomycin_start_t
+vancomycin_end_t              <- asv_pert[which(asv_pert$subject == 2),]$end[2]
+vancomycin_subject2_IDs       <- subject2[which(subject2$time == vancomycin_start_t) : which(subject2$time ==vancomycin_end_t),]$sampleID
+vancomycin_subject2_aggregate <- asv_table_aggregate[vancomycin_subject2_IDs,]
+#   Se obtienen los datos agregados del periodo con vancomicina del raton 2
+#   Se guarda el objeto procesado como .RData
+# save(vancomycin_subject2_aggregate, file = "03_out/data/vancomycin_period_mouse_2.RData")
+## Recovered 2 -- --- --- ---
+recover2_start_t <- subject2$time[which(subject2$time == vancomycin_end_t)+1]
+gentamicin_start_t <- asv_pert[which(asv_pert$subject == 2),]$start[3]
+recover2_end_t <- subject2$time[which(subject2$time == gentamicin_start_t)-1]
+recover2_subject2_IDs <- subject2[which(subject2$time == recover2_start_t) : which(subject2$time ==recover2_end_t),]$sampleID
+recover2_subject2_aggregate <- asv_table_aggregate[recover2_subject2_IDs,]
+#   Se obtienen los datos agregados del periodo de recuperacion 2 del raton 2
+#   Se guarda el objeto procesado como .RData
+# save(recover2_subject2_aggregate, file = "03_out/data/recovered2_period_mouse_2.RData")
