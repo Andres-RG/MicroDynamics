@@ -56,3 +56,6 @@ fatdiet_start_t     <- asv_pert[which(asv_pert$subject == 2),]$start[1]
 basal_end_t         <- subject2$time[which(subject2$time == fatdiet_start_t) -1 ]
 basal_subject2_IDs  <- subject2[which(subject2$time == basal_start_t) : which(subject2$time == basal_end_t),]$sampleID
 basal_subject2      <- asv_table_aggregate[basal_subject2_IDs,]
+#   Se obtienen los datos agregados del periodo basal del raton 2
+#   Se guarda el objeto procesado como .RData
+# save(basal_subject2, file = "03_out/data/basal_period_mouse_2.RData")
