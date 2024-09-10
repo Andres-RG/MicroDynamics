@@ -19,7 +19,6 @@ load(file = "03_out/data/recovered3_period_mouse_2.RData") # recover3_subject2_a
 source("02_scripts/01_procesamiento_y_filtrado_de_datos.R")
 ##---------------------------
 # De cada raton, se separan las abundancias por tratamiento
-## RATON 2 ##----------------
 ## Basal - --- --- --- --- --
 basal_start_t            <- subject2$time[1]
 fatdiet_start_t          <- asv_pert[which(asv_pert$subject == 2),]$start[1]
