@@ -9,4 +9,9 @@ csl: apa.csl
 
 EWSmethods [@ewsmethodsR]
 
+cita 1[@Gilbert2012]
+
+cita 2[@Bush2017]
+
+paper [@GONZE201841]
 
