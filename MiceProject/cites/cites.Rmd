@@ -15,3 +15,12 @@ cita 2[@Bush2017]
 
 paper [@GONZE201841]
 
+Early-warning signals for critical transitions [@Scheffer2009]
+
+Early warning signals of complex critical transitions in deterministic dynamics [@Evers2024]
+
+resiliencia [@scheffer2015resilience]
+
+Simple tipping or complex transition? Lessons from a green Sahara [@bathiany2016simple]
+
+dakos [@dakos2014critical]
