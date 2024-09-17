@@ -5,13 +5,6 @@ library(mlBioNets)
 # Se cargan los datos procesados
 load(file = "03_out/data/asv_table.RData") # asv_table
 load(file = "03_out/data/asv_table_aggregate.RData") # asv_table_cllps
-load(file = "03_out/data/basal_period_mouse_2.RData") # basal_subject2_aggregate
-load(file = "03_out/data/fatdiet_period_mouse_2.RData") # fatdiet_subject2_aggregate
-load(file = "03_out/data/recovered1_period_mouse_2.RData") # recover1_subject2_aggregate
-load(file = "03_out/data/vancomycin_period_mouse_2.RData") # vancomycin_subject2_aggregate
-load(file = "03_out/data/recovered2_period_mouse_2.RData") # recover2_subject2_aggregate
-load(file = "03_out/data/gentamicin_period_mouse_2.RData") # gentamicin_subject2_aggregate
-load(file = "03_out/data/recovered3_period_mouse_2.RData") # recover3_subject2_aggregate
 ##---------------------------
 # Se cargan los datos en el entorno de R
 # asv abundance table
