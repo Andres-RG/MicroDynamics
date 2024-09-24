@@ -33,7 +33,7 @@ fatdiet_start_t
 fatdiet_end_t              <- asv_pert[which(asv_pert$subject == 3),]$end[1]
 fatdiet_end_t              <- fatdiet_end_t-0.5 ## truqueado??? en los datos de perturbacion es 28.5 pero esa medicion no existe
 fatdiet_subject3_IDs       <- subject3[which(subject3$time == fatdiet_start_t) : which(subject3$time == fatdiet_end_t),]$sampleID
-fatdiet_subject2_aggregate <- asv_table_aggregate[fatdiet_subject2_IDs,]
+fatdiet_subject3_aggregate <- asv_table_aggregate[fatdiet_subject2_IDs,]
 #   Se obtienen los datos agregados del periodo fatdiet del raton 2
 #   Se guarda el objeto procesado como .RData
 # save(fatdiet_subject3_aggregate, file = "03_out/data/fatdiet_period_mouse_3.RData")
