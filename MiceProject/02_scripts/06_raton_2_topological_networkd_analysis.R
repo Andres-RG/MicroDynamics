@@ -22,7 +22,7 @@ load(file = "03_out/data/vancomycin_period_mouse_2.RData") # vancomycin_subject2
 load(file = "03_out/data/recovered2_period_mouse_2.RData") # recover2_subject2_aggregate
 load(file = "03_out/data/gentamicin_period_mouse_2.RData") # gentamicin_subject2_aggregate
 load(file = "03_out/data/recovered3_period_mouse_2.RData") # recover3_subject2_aggregate
-load(file = "03_out/data/mice_multilayer_network_properties.RData") # mice_ml_properties
+load(file = "03_out/data/mice_multilayer_network_properties_mouse_2.RData") # mice_ml_properties
 ##---------------------------
 ml_subject2 <- list(
   basal_subject2_aggregate,
@@ -259,12 +259,13 @@ plot_modularity <- ggplot(
   )
 ##
 # jpeg("03_out/plots/plot_mice_multilayer_network_analysis_mouse_2.jpeg",
-#     width = 9333, height = 3700, res = 800, units = "px")
-# grid.arrange(plot_mean_degree,
-#              plot_sd_degree,
-#              plot_transitivity,
-#              plot_edge_density,
-#              plot_linked_nodes,
-#              plot_modularity,
-#              ncol = 3)
+#      width = 9333, height = 3700, res = 800, units = "px")
+grid.arrange(plot_mean_degree,
+             plot_sd_degree,
+             plot_transitivity,
+             plot_edge_density,
+             plot_linked_nodes,
+             plot_modularity,
+             ncol = 3,
+             top = "Multilayer network analysis")
 # dev.off()
