@@ -267,5 +267,5 @@ grid.arrange(plot_mean_degree,
              plot_linked_nodes,
              plot_modularity,
              ncol = 3,
-             top = "Multilayer network analysis")
+             top = "Multilayer network analysis mouse 2")
 # dev.off()
