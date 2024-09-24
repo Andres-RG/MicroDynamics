@@ -22,7 +22,7 @@ load(file = "03_out/data/vancomycin_period_mouse_2.RData") # vancomycin_subject2
 load(file = "03_out/data/recovered2_period_mouse_2.RData") # recover2_subject2_aggregate
 load(file = "03_out/data/gentamicin_period_mouse_2.RData") # gentamicin_subject2_aggregate
 load(file = "03_out/data/recovered3_period_mouse_2.RData") # recover3_subject2_aggregate
-load(file = "03_out/data/mice_multilayer_network_properties_mouse_2.RData") # mice_ml_properties
+load(file = "03_out/data/mice_multilayer_network_properties_mouse_2.RData") # mice_ml_properties_s2
 ##---------------------------
 ml_subject2 <- list(
   basal_subject2_aggregate,
@@ -55,7 +55,7 @@ gentamicin_period_s2 <- list(Nrecover2_subject2,
 treatments <- c(1,2,3)
 ##
 # Propiedades de las redes multicapa
-mice_ml_properties <- rbind(ml_properties(fatdiet_period_s2, treatments),
+mice_ml_properties_s2 <- rbind(ml_properties(fatdiet_period_s2, treatments),
                             ml_properties(vancomyci_period_s2, treatments),
                             ml_properties(gentamicin_period_s2, treatments))
 ##
@@ -63,17 +63,17 @@ Stage = c(rep("Fat diet", length(fatdiet_period_s2)),
           rep("Vancomycin", length(vancomyci_period_s2)),
           rep("Gentamicin", length(gentamicin_period_s2))
           )
-mice_ml_properties <- cbind(mice_ml_properties, Stage)
+mice_ml_properties_s2 <- cbind(mice_ml_properties_s2, Stage)
 ## Se genera un objeto que tiene las propiedades de las redes multicapa por 
 ## cada tratamiento
 ## Se guarda objeto .RData
-# save(mice_ml_properties, file = "03_out/data/mice_multilayer_network_properties_mouse_2.RData")
+# save(mice_ml_properties_s2, file = "03_out/data/mice_multilayer_network_properties_mouse_2.RData")
 ##---------------------------
-names(mice_ml_properties)
+names(mice_ml_properties_s2)
 # Graficas
 ## mean degree === === === ==
 plot_mean_degree <- ggplot(
-  mice_ml_properties,
+  mice_ml_properties_s2,
   aes(x = Treatments,
       y = Mean_degree,
       col = Stage) 
@@ -104,7 +104,7 @@ plot_mean_degree <- ggplot(
   )
 ## sd degree = === === === ==
 plot_sd_degree <- ggplot(
-  mice_ml_properties,
+  mice_ml_properties_s2,
   aes(x = Treatments,
       y = sd_degree,
       col = Stage) 
@@ -135,7 +135,7 @@ plot_sd_degree <- ggplot(
   )
 ## transitivity === === === =
 plot_transitivity <- ggplot(
-  mice_ml_properties,
+  mice_ml_properties_s2,
   aes(x = Treatments,
       y = Clusterization,
       col = Stage) 
@@ -166,7 +166,7 @@ plot_transitivity <- ggplot(
   )
 ## edge density === === === =
 plot_edge_density <- ggplot(
-  mice_ml_properties,
+  mice_ml_properties_s2,
   aes(x = Treatments,
       y = Edge_density,
       col = Stage) 
@@ -197,7 +197,7 @@ plot_edge_density <- ggplot(
   )
 ## proportion of linked nodes ===
 plot_linked_nodes <- ggplot(
-  mice_ml_properties,
+  mice_ml_properties_s2,
   aes(x = Treatments,
       y = Connected_nodes,
       col = Stage) 
@@ -228,7 +228,7 @@ plot_linked_nodes <- ggplot(
   )
 ## modularity === === === ===
 plot_modularity <- ggplot(
-  mice_ml_properties,
+  mice_ml_properties_s2,
   aes(x = Treatments,
       y = Modularity,
       col = Stage) 
