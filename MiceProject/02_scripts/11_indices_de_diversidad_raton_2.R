@@ -39,3 +39,17 @@ berger_parker_index <- data.frame(
 rownames(berger_parker_index) <- seq(1,length(b_p_index),1)
 berger_parker_index <- as.table(berger_parker_index)
 berger_parker_index
+# shannon
+sha_i <- apply(mouse2,
+               1,
+               function(x) diversity(x, index = "shannon"))
+S <- apply(mouse2, 1, function(x) sum(x > 0))
+shannon_normalized <- sha_i / log(S)
+names(shannon_normalized) <- c()
+shannon_normalized_index <- data.frame(
+  time = seq(1,length(shannon_normalized),1),
+  shannon = shannon_normalized
+)
+rownames(shannon_normalized_index) <- seq(1,length(shannon_normalized),1)
+shannon_normalized_index <- as.table(shannon_normalized_index)
+shannon_normalized_index
