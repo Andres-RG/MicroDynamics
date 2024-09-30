@@ -15,6 +15,7 @@ mouse2 <- rbind(basal_subject2_aggregate,
                 recover2_subject2_aggregate,
                 gentamicin_subject2_aggregate,
                 recover3_subject2_aggregate)
+# save(mouse2, file = "03_out/mouse2.RData")
 # simpson
 s_i <- apply(mouse2, 1, function(x) diversity(x, index = "simpson"))
 names(s_i) <- c()
@@ -23,7 +24,6 @@ simpson_index <- data.frame(
   simpson = s_i
 )
 rownames(simpson_index) <- seq(1,length(s_i),1)
-simpson_index <- as.table(simpson_index)
 simpson_index
 # pielou
 pielou_index <- readRDS("~/Documents/maestria/MicroDynamics/MiceProject/01_raw_data/mice_data.RDS")
@@ -37,7 +37,6 @@ berger_parker_index <- data.frame(
   b_p = b_p_index
 )
 rownames(berger_parker_index) <- seq(1,length(b_p_index),1)
-berger_parker_index <- as.table(berger_parker_index)
 berger_parker_index
 # shannon
 sha_i <- apply(mouse2,
@@ -51,5 +50,4 @@ shannon_normalized_index <- data.frame(
   shannon = shannon_normalized
 )
 rownames(shannon_normalized_index) <- seq(1,length(shannon_normalized),1)
-shannon_normalized_index <- as.table(shannon_normalized_index)
 shannon_normalized_index
