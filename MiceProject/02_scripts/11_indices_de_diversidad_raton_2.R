@@ -28,3 +28,14 @@ simpson_index
 # pielou
 pielou_index <- readRDS("~/Documents/maestria/MicroDynamics/MiceProject/01_raw_data/mice_data.RDS")
 pielou_index
+# berger-parker index
+b_p_index <- apply(mouse2, 1,
+                             function(x) max(x)/sum(x))
+names(b_p_index) <- c()
+berger_parker_index <- data.frame(
+  time = seq(1,length(b_p_index),1),
+  b_p = b_p_index
+)
+rownames(berger_parker_index) <- seq(1,length(b_p_index),1)
+berger_parker_index <- as.table(berger_parker_index)
+berger_parker_index
