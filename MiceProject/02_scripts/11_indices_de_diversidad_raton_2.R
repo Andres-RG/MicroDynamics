@@ -51,3 +51,10 @@ shannon_normalized_index <- data.frame(
 )
 rownames(shannon_normalized_index) <- seq(1,length(shannon_normalized),1)
 shannon_normalized_index
+# gini-simpson
+gini_simpson_index <- data.frame(
+  time = seq(1,length(s_i),1),
+  gini_simpson = 1 - simpson_index[,2]
+)
+rownames(gini_simpson_index) <- seq(1,length(s_i),1)
+gini_simpson_index
