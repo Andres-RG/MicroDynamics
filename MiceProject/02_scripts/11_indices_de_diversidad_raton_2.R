@@ -35,7 +35,7 @@ simpson_index_mouse2 <- data.frame(
 )
 rownames(simpson_index_mouse2) <- seq(1,length(simpson_mouse2),1)
 simpson_index_mouse2
-# save(simpson_index, file = "03_out/data/index_diversity_simpson_mouse2.RData")
+# save(simpson_index_mouse2, file = "03_out/data/index_diversity_simpson_mouse2.RData")
 # pielou
 pielou_index_mouse2 <- readRDS("~/Documents/maestria/MicroDynamics/MiceProject/01_raw_data/mice_data.RDS")
 pielou_index_mouse2
