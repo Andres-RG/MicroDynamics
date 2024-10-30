@@ -51,20 +51,6 @@ berger_parker_index_mouse2 <- data.frame(
 rownames(berger_parker_index_mouse2) <- seq(1,length(berger_parker_mouse2),1)
 berger_parker_index_mouse2
 # save(berger_parker_index_mouse2, file = "03_out/data/index_diversity_berger_parker_mouse2.RData")
-# shannon normalizado
-shannon_mouse2 <- apply(mouse2,
-               1,
-               function(x) diversity(x, index = "shannon"))
-S <- apply(mouse2, 1, function(x) sum(x > 0))
-shannon_normalized_mouse2 <- shannon_mouse2 / log(S)
-names(shannon_normalized_mouse2) <- c()
-shannon_normalized_index_mouse2 <- data.frame(
-  time = seq(1,length(shannon_normalized_mouse2),1),
-  shannon = shannon_normalized_mouse2
-)
-rownames(shannon_normalized_index_mouse2) <- seq(1,length(shannon_normalized_mouse2),1)
-shannon_normalized_index_mouse2
-# save(shannon_normalized_index_mouse2, file = "03_out/data/index_diversity_shannon_normalized_mouse2.RData")
 # gini-simpson
 gini_simpson_index_mouse2 <- data.frame(
   time = seq(1,length(simpson_mouse2),1),

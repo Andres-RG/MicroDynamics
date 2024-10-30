@@ -51,7 +51,7 @@ berger_parker_index_mouse4
 shannon_mouse4 <- apply(mouse4,
                         1,
                         function(x) diversity(x, index = "shannon"))
-S <- apply(mouse4, 1, function(x) sum(x > 0))
+S <- specnumber(mouse4)
 shannon_normalized_mouse4 <- shannon_mouse4 / log(S)
 names(shannon_normalized_mouse4) <- c()
 shannon_normalized_index_mouse4 <- data.frame(
@@ -61,17 +61,6 @@ shannon_normalized_index_mouse4 <- data.frame(
 rownames(shannon_normalized_index_mouse4) <- seq(1,length(shannon_normalized_mouse4),1)
 shannon_normalized_index_mouse4
 # save(shannon_normalized_index_mouse4, file = "03_out/data/index_diversity_shannon_normalized_mouse4.RData")
-# pielou
-shannon_mouse4
-S
-pielou_mouse4 <- shannon_mouse4 / S
-names(pielou_mouse4) <-  c()
-pielou_index_mouse4 <-  data.frame(
-  time = seq(1,length(pielou_mouse4), 1),
-  pielou = pielou_mouse4
-)
-pielou_index_mouse4
-# save(pielou_index_mouse4, file = "03_out/data/index_diversity_pielou_mouse4.RData")
 # gini-simpson
 gini_simpson_index_mouse4 <- data.frame(
   time = seq(1,length(simpson_mouse4),1),
