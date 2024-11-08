@@ -27,6 +27,8 @@ mouse2 <- rbind(basal_subject2_aggregate,
 ##---------------------------
 # Indices de diversidad
 # simpson
+# probabilidad de que dos individuos de una comunidad seleccionados al azar,
+# pertenezcan a la misma especie. Valores altos = menor diversidad
 simpson_mouse2 <- apply(mouse2, 1, function(x) diversity(x, index = "simpson"))
 names(simpson_mouse2) <- c()
 simpson_index_mouse2 <- data.frame(
@@ -52,6 +54,8 @@ rownames(berger_parker_index_mouse2) <- seq(1,length(berger_parker_mouse2),1)
 berger_parker_index_mouse2
 # save(berger_parker_index_mouse2, file = "03_out/data/index_diversity_berger_parker_mouse2.RData")
 # gini-simpson
+# qué tan uniformemente se distribuyen los individuos en las diferentes especies
+# de una comunidad. Valor alto = están igualmente representadas. Valor bajo = algunas especies dominan
 gini_simpson_index_mouse2 <- data.frame(
   time = seq(1,length(simpson_mouse2),1),
   gini_simpson = 1 - simpson_index_mouse2[,2]
